@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "festivo-python"
-version = "0.0.0"
+version = "0.1.4"
 description = "Festivo Python SDK (starter)"
 authors = ["Festivo <dev@getfestivo.com>"]
 packages = [
