@@ -3,6 +3,9 @@ name = "festivo-python"
 version = "0.0.0"
 description = "Festivo Python SDK (starter)"
 authors = ["Festivo <dev@getfestivo.com>"]
+packages = [
+	{ include = "festivo" }
+]
 
 [tool.poetry.dependencies]
 python = ">=3.9"
