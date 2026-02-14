@@ -1,0 +1,9 @@
+/.venv
+/node_modules
+/js/node_modules
+/python/.venv
+/python/.venv
+/php/vendor
+/dist
+/coverage
+.DS_Store

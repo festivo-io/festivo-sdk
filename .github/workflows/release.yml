@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Publish JS package
+        if: "contains(github.ref, 'refs/tags/v') && steps.check_changes.outputs.js_changed == 'true'"
+        run: |
+          cd js
+          npm ci || npm install
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish Python package
+        if: "contains(github.ref, 'refs/tags/v') && steps.check_changes.outputs.py_changed == 'true'"
+        run: |
+          cd python
+          poetry build
+          poetry publish --username __token__ --password "$PYPI_API_TOKEN"
+        env:
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: Publish PHP / Packagist
+        if: "contains(github.ref, 'refs/tags/v')"
+        run: echo "Packagist publishing is handled via Packagist/GitHub integration."
+
+      - name: Go modules (tag published)
+        run: echo "Go modules are available via git tags."

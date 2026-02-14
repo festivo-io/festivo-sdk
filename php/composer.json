@@ -1,0 +1,13 @@
+{
+  "name": "getfestivo/festivo-php",
+  "description": "Festivo PHP SDK (starter)",
+  "type": "library",
+  "autoload": {
+    "psr-4": { "Festivo\\": "src/" }
+  },
+  "require": {
+    "php": ">=8.0",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^7.0"
+  }
+}

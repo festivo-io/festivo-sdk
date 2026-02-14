@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "festivo-python"
+version = "0.0.0"
+description = "Festivo Python SDK (starter)"
+authors = ["Festivo <dev@getfestivo.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+requests = "^2.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
