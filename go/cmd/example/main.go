@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-    c := festivo.NewClient("YOUR_API_KEY")
-    invoice, err := c.GetInvoice("inv_123")
+    client := festivo.NewClient("YOUR_API_KEY")
+    invoice, err := client.GetInvoice("inv_123")
     if err != nil {
         panic(err)
     }

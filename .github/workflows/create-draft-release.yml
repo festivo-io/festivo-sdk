@@ -1,0 +1,29 @@
+name: Create Draft Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name (e.g. v0.1.0)'
+        required: true
+      release_name:
+        description: 'Release title'
+        required: false
+      body:
+        description: 'Release notes/body'
+        required: false
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create draft release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.event.inputs.tag_name }}
+          release_name: ${{ github.event.inputs.release_name || github.event.inputs.tag_name }}
+          body: ${{ github.event.inputs.body || '' }}
+          draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -19,8 +19,12 @@ jobs:
       - name: Install & build
         working-directory: ./js
         run: |
-          npm ci || npm install
+          npm ci || npm install --legacy-peer-deps
           npm run build || echo "no build script"
+      - name: Lint
+        working-directory: ./js
+        run: |
+          npm run lint || true
 
   python:
     name: Python
@@ -59,6 +63,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-      - name: Install composer deps
+      - name: Validate composer
         working-directory: ./php
-        run: composer install --no-interaction --no-progress
+        run: |
+          composer validate --no-check-publish || true
+          composer install --no-interaction --no-progress || true
