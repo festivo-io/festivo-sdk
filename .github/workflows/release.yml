@@ -35,22 +35,64 @@ jobs:
           echo "release_version=$ver" >> $GITHUB_OUTPUT
           echo "Derived release version: $ver"
 
-      - name: Sync package files to release version
+      - name: Detect changed packages
+        id: detect_changes
+        run: |
+          git fetch --tags --quiet
+          REF=${GITHUB_REF#refs/tags/}
+          PREV_TAG=$(git describe --tags --abbrev=0 "${GITHUB_REF}^" 2>/dev/null || true)
+          if [ -n "$PREV_TAG" ]; then
+            echo "Comparing $PREV_TAG..${REF}"
+            CHANGED=$(git diff --name-only $PREV_TAG ${GITHUB_REF})
+          else
+            echo "No previous tag found — treating all files as changed"
+            CHANGED=$(git ls-tree -r --name-only HEAD)
+          fi
+          echo "$CHANGED" > changed.txt
+          js=false; py=false; php=false; go=false
+          echo "$CHANGED" | grep -E '^js/' >/dev/null 2>&1 && js=true || true
+          echo "$CHANGED" | grep -E '^python/' >/dev/null 2>&1 && py=true || true
+          echo "$CHANGED" | grep -E '^php/' >/dev/null 2>&1 && php=true || true
+          echo "$CHANGED" | grep -E '^go/' >/dev/null 2>&1 && go=true || true
+          echo "js_changed=$js" >> $GITHUB_OUTPUT
+          echo "py_changed=$py" >> $GITHUB_OUTPUT
+          echo "php_changed=$php" >> $GITHUB_OUTPUT
+          echo "go_changed=$go" >> $GITHUB_OUTPUT
+          echo "Changed files:\n$CHANGED"
+
+      - name: Sync package files to release version (changed only)
         id: sync_versions
         run: |
           echo "Syncing package versions to $RELEASE_VERSION"
-          # Update JS package.json
-          node -e "const fs=require('fs'); const p=require('./js/package.json'); p.version=process.env.RELEASE_VERSION; fs.writeFileSync('./js/package.json', JSON.stringify(p,null,2));"
+          # Update JS package.json if changed or FORCE_PUBLISH
+          if [ "${{ steps.detect_changes.outputs.js_changed }}" = "true" ] || [ "${FORCE_PUBLISH}" = "true" ]; then
+            node -e "const fs=require('fs'); const p=require('./js/package.json'); p.version=process.env.RELEASE_VERSION; fs.writeFileSync('./js/package.json', JSON.stringify(p,null,2));"
+            echo "JS package.json updated"
+          else
+            echo "JS not changed — skip version bump"
+          fi
           # Update Python pyproject.toml (Poetry)
-          sed -E -i.bak "s/^version\s*=\s*\"[^"]*\"/version = \"${RELEASE_VERSION}\"/" python/pyproject.toml
+          if [ "${{ steps.detect_changes.outputs.py_changed }}" = "true" ] || [ "${FORCE_PUBLISH}" = "true" ]; then
+            sed -E -i.bak "s/^version\s*=\s*\"[^\"]*\"/version = \"${RELEASE_VERSION}\"/" python/pyproject.toml
+            echo "Python pyproject.toml updated"
+          else
+            echo "Python not changed — skip version bump"
+          fi
           # Update PHP composer.json
-          sed -E -i.bak "s/\"version\"\s*:\s*\"[^"]*\"/\"version\": \"${RELEASE_VERSION}\"/" php/composer.json || true
+          if [ "${{ steps.detect_changes.outputs.php_changed }}" = "true" ] || [ "${FORCE_PUBLISH}" = "true" ]; then
+            sed -E -i.bak "s/\"version\"\s*:\s*\"[^\"]*\"/\"version\": \"${RELEASE_VERSION}\"/" php/composer.json || true
+            echo "PHP composer.json updated"
+          else
+            echo "PHP not changed — skip version bump"
+          fi
           echo "Files updated"
         env:
           RELEASE_VERSION: ${{ steps.set_version.outputs.release_version }}
+          FORCE_PUBLISH: ${{ env.FORCE_PUBLISH }}
 
       - name: Check npm for version
         id: npm_check
+        if: ${{ steps.detect_changes.outputs.js_changed == 'true' || env.FORCE_PUBLISH == 'true' }}
         run: |
           cd js
           ver=$(node -p "require('./package.json').version")
@@ -87,6 +129,7 @@ jobs:
 
       - name: Check PyPI for version
         id: pypi_check
+        if: ${{ steps.detect_changes.outputs.py_changed == 'true' || env.FORCE_PUBLISH == 'true' }}
         run: |
           cd python
           ver=$(sed -nE 's/^version *= *"([^"]+)"/\1/p' pyproject.toml | head -n1)
@@ -106,7 +149,7 @@ jobs:
           fi
 
       - name: Publish Python package
-        if: "startsWith(github.ref, 'refs/tags/v') && steps.pypi_check.outputs.version_exists != 'true'"
+        if: "startsWith(github.ref, 'refs/tags/v') && (steps.detect_changes.outputs.py_changed == 'true' || env.FORCE_PUBLISH == 'true') && steps.pypi_check.outputs.version_exists != 'true'"
         run: |
           cd python
           poetry build
@@ -115,11 +158,11 @@ jobs:
           PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Publish PHP / Packagist
-        if: "startsWith(github.ref, 'refs/tags/v')"
+        if: "startsWith(github.ref, 'refs/tags/v') && (steps.detect_changes.outputs.php_changed == 'true' || env.FORCE_PUBLISH == 'true')"
         run: echo "Packagist publishing is handled via Packagist/GitHub integration."
 
       - name: Notify Packagist (if credentials provided)
-        if: "startsWith(github.ref, 'refs/tags/v')"
+        if: "startsWith(github.ref, 'refs/tags/v') && (steps.detect_changes.outputs.php_changed == 'true' || env.FORCE_PUBLISH == 'true')"
         env:
           PACKAGIST_USER: ${{ secrets.PACKAGIST_USERNAME }}
           PACKAGIST_TOKEN: ${{ secrets.PACKAGIST_API_TOKEN }}
