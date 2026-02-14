@@ -23,6 +23,32 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@festivo-io'
 
+      - name: Derive release version from tag
+        id: set_version
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            ver=${GITHUB_REF#refs/tags/}
+            ver=${ver#v}
+          else
+            ver=$(date +%s)
+          fi
+          echo "release_version=$ver" >> $GITHUB_OUTPUT
+          echo "Derived release version: $ver"
+
+      - name: Sync package files to release version
+        id: sync_versions
+        run: |
+          echo "Syncing package versions to $RELEASE_VERSION"
+          # Update JS package.json
+          node -e "const fs=require('fs'); const p=require('./js/package.json'); p.version=process.env.RELEASE_VERSION; fs.writeFileSync('./js/package.json', JSON.stringify(p,null,2));"
+          # Update Python pyproject.toml (Poetry)
+          sed -E -i.bak "s/^version\s*=\s*\"[^"]*\"/version = \"${RELEASE_VERSION}\"/" python/pyproject.toml
+          # Update PHP composer.json
+          sed -E -i.bak "s/\"version\"\s*:\s*\"[^"]*\"/\"version\": \"${RELEASE_VERSION}\"/" php/composer.json || true
+          echo "Files updated"
+        env:
+          RELEASE_VERSION: ${{ steps.set_version.outputs.release_version }}
+
       - name: Check npm for version
         id: npm_check
         run: |
