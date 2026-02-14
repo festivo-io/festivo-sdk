@@ -51,16 +51,8 @@ jobs:
         id: pypi_check
         run: |
           cd python
-          ver=$(python - <<'PY'
-import tomllib
-data=tomllib.loads(open('pyproject.toml','rb').read())
-print(data['tool']['poetry']['version'])
-PY
-          name=$(python - <<'PY'
-import tomllib
-data=tomllib.loads(open('pyproject.toml','rb').read())
-print(data['tool']['poetry']['name'])
-PY
+          ver=$(sed -nE 's/^version *= *"([^"]+)"/\1/p' pyproject.toml | head -n1)
+          name=$(sed -nE 's/^name *= *"([^"]+)"/\1/p' pyproject.toml | head -n1)
           echo "Checking PyPI for ${name} version ${ver}"
           if curl -sSf "https://pypi.org/pypi/${name}/json" >/dev/null 2>&1; then
             if curl -s "https://pypi.org/pypi/${name}/json" | python -c "import sys,json; d=json.load(sys.stdin); print('true' if '${ver}' in d.get('releases',{}) else 'false')" | grep -q true; then
