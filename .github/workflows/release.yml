@@ -23,6 +23,20 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@festivo-io'
 
+      - name: Check npm for version
+        id: npm_check
+        run: |
+          cd js
+          ver=$(node -p "require('./package.json').version")
+          echo "Checking npm for @festivo-io/festivo-sdk@$ver"
+          if npm view @festivo-io/festivo-sdk@$ver >/dev/null 2>&1; then
+            echo "version_exists=true" >> $GITHUB_OUTPUT
+            echo "Version $ver is already published, will skip publish step."
+          else
+            echo "version_exists=false" >> $GITHUB_OUTPUT
+            echo "Version $ver not found on npm, publish will proceed."
+          fi
+
       - name: Publish JS package
         if: "startsWith(github.ref, 'refs/tags/v')"
         run: |
