@@ -1,10 +1,12 @@
 {
   "name": "getfestivo/festivo-php",
   "description": "Festivo PHP SDK (starter)",
-  "version": "0.1.4",
+  "version": "0.1.9",
   "type": "library",
   "autoload": {
-    "psr-4": { "Festivo\\": "src/" }
+    "psr-4": {
+      "Festivo\\": "src/"
+    }
   },
   "require": {
     "php": ">=8.0",
