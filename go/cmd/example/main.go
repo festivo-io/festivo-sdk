@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-    "github.com/getfestivo/festivo-sdk-go/festivo"
+    "github.com/festivo-io/festivo-sdk-go/festivo"
 )
 
 func main() {

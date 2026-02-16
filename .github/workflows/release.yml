@@ -201,8 +201,8 @@ jobs:
             echo "Packagist credentials not provided; skipping notify."
             exit 0
           fi
-          echo "Notifying Packagist to update package getfestivo/festivo-php"
-          curl -sS -X POST "https://packagist.org/api/update-package?username=${PACKAGIST_USER}&apiToken=${PACKAGIST_TOKEN}" -d "package=getfestivo/festivo-php" || true
+          echo "Notifying Packagist to update package festivo-io/festivo-php"
+          curl -sS -X POST "https://packagist.org/api/update-package?username=${PACKAGIST_USER}&apiToken=${PACKAGIST_TOKEN}" -d "package=festivo-io/festivo-php" || true
 
       - name: Go modules (tag published)
         run: echo "Go modules are available via git tags."
