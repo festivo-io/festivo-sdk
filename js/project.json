@@ -1,0 +1,15 @@
+{
+  "root": "js",
+  "sourceRoot": "js/src",
+  "projectType": "library",
+  "targets": {
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          { "command": "cd js && npm ci && npm run build" }
+        ]
+      }
+    }
+  }
+}

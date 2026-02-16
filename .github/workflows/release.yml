@@ -38,27 +38,57 @@ jobs:
       - name: Detect changed packages
         id: detect_changes
         run: |
-          git fetch --tags --quiet
+          # Install nx CLI locally
+          corepack enable || true
+          corepack prepare pnpm@latest --activate || true
+          pnpm -v >/dev/null 2>&1 || true
+          # Ensure node modules available for nx if package.json exists
+          if [ -f package.json ]; then
+            pnpm install --frozen-lockfile || npm ci || true
+          fi
+          # Compute affected projects using nx; fall back to folder detection if nx fails
+          git fetch --tags --quiet || true
           REF=${GITHUB_REF#refs/tags/}
           PREV_TAG=$(git describe --tags --abbrev=0 "${GITHUB_REF}^" 2>/dev/null || true)
-          if [ -n "$PREV_TAG" ]; then
-            echo "Comparing $PREV_TAG..${REF}"
-            CHANGED=$(git diff --name-only $PREV_TAG ${GITHUB_REF})
-          else
-            echo "No previous tag found — treating all files as changed"
-            CHANGED=$(git ls-tree -r --name-only HEAD)
+          if command -v npx >/dev/null 2>&1; then
+            echo "Trying nx print-affected"
+            if [ -n "$PREV_TAG" ]; then
+              AFFECTED=$(npx -y nx print-affected --base=$PREV_TAG --head=$REF --select=projects 2>/dev/null || true)
+            else
+              # If no previous tag, treat all projects as affected
+              AFFECTED="js python php go"
+            fi
           fi
-          echo "$CHANGED" > changed.txt
-          js=false; py=false; php=false; go=false
-          echo "$CHANGED" | grep -E '^js/' >/dev/null 2>&1 && js=true || true
-          echo "$CHANGED" | grep -E '^python/' >/dev/null 2>&1 && py=true || true
-          echo "$CHANGED" | grep -E '^php/' >/dev/null 2>&1 && php=true || true
-          echo "$CHANGED" | grep -E '^go/' >/dev/null 2>&1 && go=true || true
+          if [ -z "$AFFECTED" ]; then
+            echo "nx detection failed; falling back to folder detection"
+            if [ -n "$PREV_TAG" ]; then
+              CHANGED=$(git diff --name-only "$PREV_TAG" "${GITHUB_REF}" || true)
+            else
+              CHANGED=$(git ls-tree -r --name-only HEAD || true)
+            fi
+            echo "$CHANGED" > changed.txt
+            js=false; py=false; php=false; go=false
+            if echo "$CHANGED" | grep -E '^js/' >/dev/null 2>&1; then js=true; fi
+            if echo "$CHANGED" | grep -E '^python/' >/dev/null 2>&1; then py=true; fi
+            if echo "$CHANGED" | grep -E '^php/' >/dev/null 2>&1; then php=true; fi
+            if echo "$CHANGED" | grep -E '^go/' >/dev/null 2>&1; then go=true; fi
+          else
+            echo "Affected projects: $AFFECTED"
+            js=false; py=false; php=false; go=false
+            for p in $AFFECTED; do
+              case "$p" in
+                js) js=true ;;
+                python|py) py=true ;;
+                php) php=true ;;
+                go) go=true ;;
+              esac
+            done
+          fi
           echo "js_changed=$js" >> $GITHUB_OUTPUT
           echo "py_changed=$py" >> $GITHUB_OUTPUT
           echo "php_changed=$php" >> $GITHUB_OUTPUT
           echo "go_changed=$go" >> $GITHUB_OUTPUT
-          echo "Changed files:\n$CHANGED"
+          echo -e "Changed files:\n$CHANGED"
 
       - name: Sync package files to release version (changed only)
         id: sync_versions

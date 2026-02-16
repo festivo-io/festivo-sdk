@@ -1,0 +1,15 @@
+{
+  "root": "php",
+  "sourceRoot": "php",
+  "projectType": "library",
+  "targets": {
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          { "command": "echo 'PHP publish placeholder'" }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "npmScope": "festivo",
+  "implicitDependencies": {},
+  "projects": {
+    "js": {"tags": []},
+    "python": {"tags": []},
+    "php": {"tags": []},
+    "go": {"tags": []}
+  }
+}

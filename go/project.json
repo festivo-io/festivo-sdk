@@ -1,0 +1,15 @@
+{
+  "root": "go",
+  "sourceRoot": "go",
+  "projectType": "library",
+  "targets": {
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          { "command": "echo 'Go modules published via tags'" }
+        ]
+      }
+    }
+  }
+}

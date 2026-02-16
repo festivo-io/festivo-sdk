@@ -1,0 +1,15 @@
+{
+  "root": "python",
+  "sourceRoot": "python",
+  "projectType": "library",
+  "targets": {
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          { "command": "cd python && poetry build" }
+        ]
+      }
+    }
+  }
+}
