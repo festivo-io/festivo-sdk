@@ -1,0 +1,11 @@
+{
+  "name": "festivo-io/festivo-php",
+  "description": "Festivo PHP SDK (monorepo root stub)",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Festivo\\": "php/src/"
+    }
+  },
+  "homepage": "https://github.com/festivo-io/festivo-sdk"
+}
