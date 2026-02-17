@@ -7,9 +7,18 @@ import (
 
 func main() {
     client := festivo.NewClient("YOUR_API_KEY")
-    invoice, err := client.GetInvoice("inv_123")
+    
+    // Get holidays for a country
+    holidays, err := client.GetHolidays("US", nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(invoice)
+    fmt.Printf("Holidays: %+v\n", holidays)
+    
+    // Check if a specific date is a holiday
+    check, err := client.CheckHoliday("US", "2026-12-25", nil)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("Is holiday: %v\n", check.IsHoliday)
 }

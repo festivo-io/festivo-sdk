@@ -188,8 +188,8 @@ func TestCheckHoliday(t *testing.T) {
 			t.Errorf("Expected date to be 2026-12-25, got %s", query.Get("date"))
 		}
 
-		if !r.URL.Path == "/v3/public-holidays/list/check" {
-			t.Errorf("Expected path to contain /check, got %s", r.URL.Path)
+		if r.URL.Path != "/v3/public-holidays/list/check" {
+			t.Errorf("Expected path to be /v3/public-holidays/list/check, got %s", r.URL.Path)
 		}
 
 		resp := CheckHolidayResponse{
