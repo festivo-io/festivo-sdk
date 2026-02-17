@@ -141,7 +141,7 @@ describe('FestivoClient', () => {
       await client.checkHoliday('US', '2026-12-25');
 
       const callUrl = (fetch as any).mock.calls[0][0];
-      expect(callUrl).toContain('/v3/public-holidays/list/check');
+      expect(callUrl).toContain('/v3/public-holidays/check');
       expect(callUrl).toContain('country=US');
       expect(callUrl).toContain('date=2026-12-25');
     });
