@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "festivo-python"
-version = "0.1.9"
+version = "0.1.11"
 description = "Festivo Python SDK (starter)"
 authors = ["Festivo <dev@getfestivo.com>"]
 packages = [
@@ -11,6 +11,18 @@ packages = [
 python = ">=3.9"
 requests = "^2.0"
 
+[tool.poetry.dev-dependencies]
+pytest = "^7.0"
+pytest-cov = "^4.0"
+pytest-mock = "^3.0"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --cov=festivo --cov-report=term-missing"

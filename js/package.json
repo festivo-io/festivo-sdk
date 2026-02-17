@@ -1,6 +1,6 @@
 {
   "name": "@festivo-io/festivo-sdk",
-  "version": "0.1.9",
+  "version": "0.1.11",
   "private": false,
   "publishConfig": {
     "access": "public",
@@ -12,12 +12,16 @@
     "build": "tsc",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts || true",
-    "test": "node example.js"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
     "eslint": "^8.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0"
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "vitest": "^1.2.0",
+    "@vitest/coverage-v8": "^1.2.0"
   }
 }

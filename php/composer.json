@@ -1,16 +1,29 @@
 {
   "name": "festivo-io/festivo-php",
   "description": "Festivo PHP SDK (starter)",
-  "version": "0.1.9",
+  "version": "0.1.11",
   "type": "library",
   "autoload": {
     "psr-4": {
       "Festivo\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Festivo\\Tests\\": "tests/"
+    }
+  },
   "require": {
     "php": ">=8.0",
     "ext-json": "*",
     "guzzlehttp/guzzle": "^7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.5",
+    "guzzlehttp/promises": "^2.0"
+  },
+  "scripts": {
+    "test": "phpunit",
+    "test-coverage": "phpunit --coverage-html coverage"
   }
 }
