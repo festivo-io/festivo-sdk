@@ -1,6 +1,19 @@
 # Festivo JavaScript/TypeScript SDK
 
- Official SDK for the Festivo Public Holidays API.
+[![npm version](https://img.shields.io/npm/v/@festivo-io/festivo-sdk.svg)](https://www.npmjs.com/package/@festivo-io/festivo-sdk)
+[![License](https://img.shields.io/npm/l/@festivo-io/festivo-sdk.svg)](https://www.npmjs.com/package/@festivo-io/festivo-sdk)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+
+Official JavaScript/TypeScript SDK for the [Festivo Public Holidays API](https://getfestivo.com). Access holiday data for 100+ countries with accurate UTC dates, regional variations, and city-level holidays.
+
+## Features
+
+- 🌍 **100+ Countries** - Comprehensive holiday coverage worldwide
+- 📅 **UTC Dates** - Accurate timezone handling for global holidays
+- 🏙️ **City & Regional** - Support for local holidays (Pro/Builder plans)
+- 💪 **TypeScript Native** - Full type definitions included
+- ⚡ **Modern ESM** - ES Modules with tree-shaking support
+- 🧪 **Well Tested** - Comprehensive test suite with Vitest
 
 ## Installation
 
@@ -47,4 +60,21 @@ if (check.is_holiday) {
 cd festivo-sdk/js
 npm install
 npm run build
+npm test
 ```
+
+## Links
+
+- [Official Website](https://getfestivo.com)
+- [API Documentation](https://docs.getfestivo.com)
+- [GitHub Repository](https://github.com/festivo-io/festivo-sdk)
+- [npm Package](https://www.npmjs.com/package/@festivo-io/festivo-sdk)
+
+## Support
+
+- Email: support@getfestivo.com
+- [Report Issues](https://github.com/festivo-io/festivo-sdk/issues)
+
+## License
+
+MIT License - see [LICENSE](../LICENSE) for details.

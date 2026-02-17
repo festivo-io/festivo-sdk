@@ -1,6 +1,19 @@
 # Festivo Python SDK
 
-Official Python SDK for the Festivo Public Holidays API.
+[![PyPI version](https://img.shields.io/pypi/v/festivo-python.svg)](https://pypi.org/project/festivo-python/)
+[![Python Version](https://img.shields.io/pypi/pyversions/festivo-python.svg)](https://pypi.org/project/festivo-python/)
+[![License](https://img.shields.io/pypi/l/festivo-python.svg)](https://pypi.org/project/festivo-python/)
+
+Official Python SDK for the [Festivo Public Holidays API](https://getfestivo.com). Access holiday data for 100+ countries with accurate UTC dates, regional variations, and city-level holidays.
+
+## Features
+
+- 🌍 **100+ Countries** - Comprehensive holiday coverage worldwide
+- 📅 **UTC Dates** - Accurate timezone handling for global holidays
+- 🏙️ **City & Regional** - Support for local holidays (Pro/Builder plans)
+- 🐍 **Python 3.9+** - Modern Python with type hints
+- 📦 **Requests Based** - Built on the reliable requests library
+- 🧪 **Well Tested** - Comprehensive test suite with pytest
 
 ## Installation
 
@@ -48,5 +61,22 @@ For local development with Poetry:
 ```bash
 cd festivo-sdk/python
 poetry install
+poetry run pytest
 poetry build
 ```
+
+## Links
+
+- [Official Website](https://getfestivo.com)
+- [API Documentation](https://docs.getfestivo.com)
+- [GitHub Repository](https://github.com/festivo-io/festivo-sdk)
+- [PyPI Package](https://pypi.org/project/festivo-python/)
+
+## Support
+
+- Email: support@getfestivo.com
+- [Report Issues](https://github.com/festivo-io/festivo-sdk/issues)
+
+## License
+
+MIT License - see [LICENSE](../LICENSE) for details.

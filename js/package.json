@@ -1,6 +1,16 @@
 {
   "name": "@festivo-io/festivo-sdk",
   "version": "0.1.11",
+  "description": "Official JavaScript/TypeScript SDK for Festivo Public Holidays API - Access 100+ countries' holiday data with UTC dates",
+  "keywords": ["festivo", "holidays", "public-holidays", "api", "calendar", "typescript", "sdk"],
+  "homepage": "https://getfestivo.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/festivo-io/festivo-sdk.git",
+    "directory": "js"
+  },
+  "license": "MIT",
+  "author": "Festivo <support@getfestivo.com>",
   "private": false,
   "publishConfig": {
     "access": "public",

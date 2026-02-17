@@ -1,6 +1,19 @@
 # Festivo Go SDK
 
-Official Go SDK for the Festivo Public Holidays API.
+[![Go Reference](https://pkg.go.dev/badge/github.com/festivo-io/festivo-sdk-go.svg)](https://pkg.go.dev/github.com/festivo-io/festivo-sdk-go)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/festivo-io/festivo-sdk)](https://github.com/festivo-io/festivo-sdk)
+[![License](https://img.shields.io/github/license/festivo-io/festivo-sdk)](https://github.com/festivo-io/festivo-sdk)
+
+Official Go SDK for the [Festivo Public Holidays API](https://getfestivo.com). Access holiday data for 100+ countries with accurate UTC dates, regional variations, and city-level holidays.
+
+## Features
+
+- 🌍 **100+ Countries** - Comprehensive holiday coverage worldwide
+- 📅 **UTC Dates** - Accurate timezone handling for global holidays
+- 🏙️ **City & Regional** - Support for local holidays (Pro/Builder plans)
+- ⚡ **Standard Library** - Uses only Go standard lib (net/http)
+- 🔒 **Type Safe** - Full struct definitions for responses
+- 🧪 **Well Tested** - Comprehensive test suite included
 
 ## Installation
 
@@ -52,3 +65,27 @@ func main() {
 - `GetCityHolidays(country, cityCode, year, opts)` - Get city-level holidays
 - `GetRegionalHolidays(country, regionCode, year, opts)` - Get regional holidays
 - `CheckHoliday(country, date, regions)` - Check if date is a holiday
+
+## Development
+
+```bash
+cd festivo-sdk/go
+go test ./...
+go build ./...
+```
+
+## Links
+
+- [Official Website](https://getfestivo.com)
+- [API Documentation](https://docs.getfestivo.com)
+- [GitHub Repository](https://github.com/festivo-io/festivo-sdk)
+- [pkg.go.dev](https://pkg.go.dev/github.com/festivo-io/festivo-sdk-go)
+
+## Support
+
+- Email: support@getfestivo.com
+- [Report Issues](https://github.com/festivo-io/festivo-sdk/issues)
+
+## License
+
+MIT License - see [LICENSE](../LICENSE) for details.
