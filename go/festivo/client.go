@@ -179,7 +179,7 @@ func (c *Client) CheckHoliday(country, date string, regions string) (*CheckHolid
 		params.Set("regions", regions)
 	}
 
-	data, err := c.request("/v3/public-holidays/list/check", params)
+	data, err := c.request("/v3/public-holidays/check", params)
 	if err != nil {
 		return nil, err
 	}

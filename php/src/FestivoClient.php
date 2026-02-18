@@ -93,7 +93,7 @@ class FestivoClient {
         if ($regions !== null) {
             $params['regions'] = $regions;
         }
-        return $this->request('/v3/public-holidays/list/check', $params);
+        return $this->request('/v3/public-holidays/check', $params);
     }
 }
 

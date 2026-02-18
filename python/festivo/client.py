@@ -136,5 +136,5 @@ class FestivoClient:
         params = {"country": country, "date": date}
         if regions:
             params["regions"] = regions
-        return self._request("/v3/public-holidays/list/check", params)
+        return self._request("/v3/public-holidays/check", params)
 
