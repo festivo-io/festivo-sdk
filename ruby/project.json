@@ -1,0 +1,7 @@
+{
+  "name": "festivo-ruby-sdk",
+  "description": "Official Ruby SDK for Festivo Public Holidays API (placeholder)",
+  "version": "0.1.0",
+  "repository": "https://github.com/festivo-io/festivo-sdk",
+  "license": "MIT"
+}
