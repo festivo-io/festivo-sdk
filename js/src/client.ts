@@ -41,9 +41,12 @@ export class FestivoClient {
     this.apiKey = config.apiKey;
   }
 
-  private async request(path: string, params?: Record<string, any>): Promise<any> {
-    const headers: Record<string, string> = { "Accept": "application/json" };
-    if (this.apiKey) headers["Authorization"] = `Bearer ${this.apiKey}`;
+  private async request(
+    path: string,
+    params?: Record<string, any>
+  ): Promise<any> {
+    const headers: Record<string, string> = { Accept: "application/json" };
+    if (this.apiKey) headers["X-API-Key"] = this.apiKey;
 
     const url = new URL(`${this.baseUrl}${path}`);
     if (params) {

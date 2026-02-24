@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/festivo-io/festivo-sdk)](LICENSE)
 [![GitHub release](https://img.shields.io/github/v/release/festivo-io/festivo-sdk)](https://github.com/festivo-io/festivo-sdk/releases)
 
-Official SDKs for the [Festivo Public Holidays API](https://getfestivo.com) - Access holiday data for 100+ countries with accurate UTC dates, regional variations, and city-level holidays.
+Official SDKs for the [Festivo Public Holidays API](https://getfestivo.com) - Access holiday data for 250+ countries with accurate UTC dates, regional variations, and city-level holidays.
 
 ## Available SDKs
 
@@ -13,10 +13,12 @@ Official SDKs for the [Festivo Public Holidays API](https://getfestivo.com) - Ac
 | **Python** | [festivo-python](https://pypi.org/project/festivo-python/) | [![PyPI](https://img.shields.io/pypi/v/festivo-python.svg)](https://pypi.org/project/festivo-python/) | [README](python/README.md) |
 | **PHP** | [festivo-io/festivo-php](https://packagist.org/packages/festivo-io/festivo-php) | [![Packagist](https://img.shields.io/packagist/v/festivo-io/festivo-php.svg)](https://packagist.org/packages/festivo-io/festivo-php) | [README](php/README.md) |
 | **Go** | [festivo-sdk-go](https://pkg.go.dev/github.com/festivo-io/festivo-sdk-go) | [![Go](https://img.shields.io/github/v/tag/festivo-io/festivo-sdk)](https://github.com/festivo-io/festivo-sdk/tags) | [README](go/README.md) |
+| **Ruby** | festivo | Coming Soon | [README](ruby/README.md) |
+| **Java** | com.festivo:festivo-sdk | Coming Soon | [README](java/README.md) |
 
 ## Features
 
-- 🌍 **100+ Countries** - Comprehensive holiday coverage worldwide
+- 🌍 **250+ Countries** - Comprehensive holiday coverage worldwide
 - 📅 **UTC Dates** - Accurate timezone handling for global holidays
 - 🏙️ **City & Regional** - Support for local holidays (Pro/Builder plans)
 - ✅ **Type Safe** - Full type definitions in all supported languages

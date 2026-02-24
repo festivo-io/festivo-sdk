@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "festivo-python"
 version = "0.1.11"
-description = "Official Python SDK for Festivo Public Holidays API - Access 100+ countries' holiday data with UTC dates"
+description = "Official Python SDK for Festivo Public Holidays API - Access 250+ countries' holiday data with UTC dates"
 authors = ["Festivo <support@getfestivo.com>"]
 license = "MIT"
 readme = "README.md"

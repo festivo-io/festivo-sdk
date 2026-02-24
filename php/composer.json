@@ -1,9 +1,17 @@
 {
   "name": "festivo-io/festivo-php",
-  "description": "Official PHP SDK for Festivo Public Holidays API - Access 100+ countries' holiday data with UTC dates",
+  "description": "Official PHP SDK for Festivo Public Holidays API - Access 250+ countries' holiday data with UTC dates",
   "version": "0.1.11",
   "type": "library",
-  "keywords": ["festivo", "holidays", "public-holidays", "api", "calendar", "php", "sdk"],
+  "keywords": [
+    "festivo",
+    "holidays",
+    "public-holidays",
+    "api",
+    "calendar",
+    "php",
+    "sdk"
+  ],
   "homepage": "https://getfestivo.com",
   "license": "MIT",
   "authors": [

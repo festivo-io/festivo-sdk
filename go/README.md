@@ -4,11 +4,11 @@
 [![Go Version](https://img.shields.io/github/go-mod/go-version/festivo-io/festivo-sdk)](https://github.com/festivo-io/festivo-sdk)
 [![License](https://img.shields.io/github/license/festivo-io/festivo-sdk)](https://github.com/festivo-io/festivo-sdk)
 
-Official Go SDK for the [Festivo Public Holidays API](https://getfestivo.com). Access holiday data for 100+ countries with accurate UTC dates, regional variations, and city-level holidays.
+Official Go SDK for the [Festivo Public Holidays API](https://getfestivo.com). Access holiday data for 250+ countries with accurate UTC dates, regional variations, and city-level holidays.
 
 ## Features
 
-- 🌍 **100+ Countries** - Comprehensive holiday coverage worldwide
+- 🌍 **250+ Countries** - Comprehensive holiday coverage worldwide
 - 📅 **UTC Dates** - Accurate timezone handling for global holidays
 - 🏙️ **City & Regional** - Support for local holidays (Pro/Builder plans)
 - ⚡ **Standard Library** - Uses only Go standard lib (net/http)

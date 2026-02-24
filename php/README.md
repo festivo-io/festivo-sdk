@@ -4,11 +4,11 @@
 [![License](https://img.shields.io/packagist/l/festivo-io/festivo-php.svg)](https://packagist.org/packages/festivo-io/festivo-php)
 [![PHP Version](https://img.shields.io/packagist/php-v/festivo-io/festivo-php.svg)](https://packagist.org/packages/festivo-io/festivo-php)
 
-Official PHP SDK for the [Festivo Public Holidays API](https://getfestivo.com). Access holiday data for 100+ countries with accurate UTC dates, regional variations, and city-level holidays.
+Official PHP SDK for the [Festivo Public Holidays API](https://getfestivo.com). Access holiday data for 250+ countries with accurate UTC dates, regional variations, and city-level holidays.
 
 ## Features
 
-- 🌍 **100+ Countries** - Comprehensive holiday coverage worldwide
+- 🌍 **250+ Countries** - Comprehensive holiday coverage worldwide
 - 📅 **UTC Dates** - Accurate timezone handling for global holidays
 - 🏙️ **City & Regional** - Support for local holidays (Pro/Builder plans)
 - ✅ **Type Safe** - Full type hints for better IDE support

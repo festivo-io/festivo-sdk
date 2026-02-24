@@ -6,7 +6,7 @@ export class FestivoClient {
     async request(path, params) {
         const headers = { "Accept": "application/json" };
         if (this.apiKey)
-            headers["Authorization"] = `Bearer ${this.apiKey}`;
+            headers["X-API-Key"] = this.apiKey;
         const url = new URL(`${this.baseUrl}${path}`);
         if (params) {
             Object.entries(params).forEach(([key, value]) => {

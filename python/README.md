@@ -4,11 +4,11 @@
 [![Python Version](https://img.shields.io/pypi/pyversions/festivo-python.svg)](https://pypi.org/project/festivo-python/)
 [![License](https://img.shields.io/pypi/l/festivo-python.svg)](https://pypi.org/project/festivo-python/)
 
-Official Python SDK for the [Festivo Public Holidays API](https://getfestivo.com). Access holiday data for 100+ countries with accurate UTC dates, regional variations, and city-level holidays.
+Official Python SDK for the [Festivo Public Holidays API](https://getfestivo.com). Access holiday data for 250+ countries with accurate UTC dates, regional variations, and city-level holidays.
 
 ## Features
 
-- 🌍 **100+ Countries** - Comprehensive holiday coverage worldwide
+- 🌍 **250+ Countries** - Comprehensive holiday coverage worldwide
 - 📅 **UTC Dates** - Accurate timezone handling for global holidays
 - 🏙️ **City & Regional** - Support for local holidays (Pro/Builder plans)
 - 🐍 **Python 3.9+** - Modern Python with type hints

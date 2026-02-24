@@ -1,6 +1,6 @@
 # Festivo Java SDK
 
-Official Java SDK for the Festivo Public Holidays API.
+Official Java SDK for the Festivo Public Holidays API - Access holiday data for 250+ countries.
 
 ## Installation
 
