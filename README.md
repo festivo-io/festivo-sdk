@@ -13,8 +13,8 @@ Official SDKs for the [Festivo Public Holidays API](https://getfestivo.com) - Ac
 | **Python** | [festivo-python](https://pypi.org/project/festivo-python/) | [![PyPI](https://img.shields.io/pypi/v/festivo-python.svg)](https://pypi.org/project/festivo-python/) | [README](python/README.md) |
 | **PHP** | [festivo-io/festivo-php](https://packagist.org/packages/festivo-io/festivo-php) | [![Packagist](https://img.shields.io/packagist/v/festivo-io/festivo-php.svg)](https://packagist.org/packages/festivo-io/festivo-php) | [README](php/README.md) |
 | **Go** | [festivo-sdk-go](https://pkg.go.dev/github.com/festivo-io/festivo-sdk-go) | [![Go](https://img.shields.io/github/v/tag/festivo-io/festivo-sdk)](https://github.com/festivo-io/festivo-sdk/tags) | [README](go/README.md) |
-| **Ruby** | festivo | Coming Soon | [README](ruby/README.md) |
-| **Java** | com.festivo:festivo-sdk | Coming Soon | [README](java/README.md) |
+| **Ruby** | [festivo](https://rubygems.org/gems/festivo) | [![Gem](https://img.shields.io/gem/v/festivo.svg)](https://rubygems.org/gems/festivo) | [README](ruby/README.md) |
+| **Java** | io.festivo:festivo-sdk | [![Maven Central](https://img.shields.io/maven-central/v/io.festivo/festivo-sdk.svg)](https://search.maven.org/artifact/io.festivo/festivo-sdk) | [README](java/README.md) |
 
 ## Features
 
@@ -73,6 +73,40 @@ go get github.com/festivo-io/festivo-sdk-go
 import "github.com/festivo-io/festivo-sdk-go/festivo"
 client := festivo.NewClient("YOUR_API_KEY")
 result, _ := client.GetHolidays("US", 2026, nil)
+```
+
+### Ruby
+
+```bash
+gem install festivo
+```
+
+```ruby
+require 'festivo'
+client = Festivo::Client.new('YOUR_API_KEY')
+result = client.get_holidays(country: 'US', year: 2026)
+```
+
+### Java
+
+**Maven:**
+```xml
+<dependency>
+  <groupId>io.festivo</groupId>
+  <artifactId>festivo-sdk</artifactId>
+  <version>0.2.0</version>
+</dependency>
+```
+
+**Gradle:**
+```groovy
+implementation 'io.festivo:festivo-sdk:0.2.0'
+```
+
+```java
+import com.festivo.FestivoClient;
+FestivoClient client = new FestivoClient("YOUR_API_KEY");
+FestivoClient.HolidaysResponse holidays = client.getHolidays("US", 2026, null);
 ```
 
 ## Documentation
