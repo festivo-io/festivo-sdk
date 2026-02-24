@@ -130,7 +130,7 @@ class TestFestivoClient:
 
         call_url = mock_get.call_args[0][0]
         call_kwargs = mock_get.call_args[1]
-        assert "/v3/public-holidays/list/check" in call_url
+        assert "/v3/public-holidays/check" in call_url
         assert call_kwargs["params"]["country"] == "US"
         assert call_kwargs["params"]["date"] == "2026-12-25"
         assert result["is_holiday"] is True
