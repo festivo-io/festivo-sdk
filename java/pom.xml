@@ -2,7 +2,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.festivo</groupId>
+    <groupId>io.github.festivo-io</groupId>
     <artifactId>festivo-sdk</artifactId>
     <version>0.2.1</version>
     <name>Festivo Java SDK</name>
@@ -48,4 +48,3 @@
         </plugins>
     </build>
 </project>
-

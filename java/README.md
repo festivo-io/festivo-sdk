@@ -9,7 +9,7 @@ Add to your Maven or Gradle project:
 **Maven:**
 ```xml
 <dependency>
-  <groupId>io.festivo</groupId>
+  <groupId>io.github.festivo-io</groupId>
   <artifactId>festivo-sdk</artifactId>
   <version>0.2.1</version>
 </dependency>
@@ -17,7 +17,7 @@ Add to your Maven or Gradle project:
 
 **Gradle:**
 ```groovy
-implementation 'io.festivo:festivo-sdk:0.2.1'
+implementation 'io.github.festivo-io:festivo-sdk:0.2.1'
 ```
 
 ## Usage
