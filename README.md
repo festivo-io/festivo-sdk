@@ -78,8 +78,8 @@ result, _ := client.GetHolidays("US", 2026, nil)
 ## Documentation
 
 - [Official Website](https://getfestivo.com)
-- [API Documentation](https://docs.getfestivo.com)
-- [Get Your API Key](https://getfestivo.com/dashboard)
+- [API Documentation](https://getfestivo.com/docs)
+- [Get Your API Key](https://app.getfestivo.com/dashboard)
 
 ## Support
 
