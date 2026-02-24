@@ -4,20 +4,26 @@ Official Java SDK for the Festivo Public Holidays API - Access holiday data for 
 
 ## Installation
 
-Add to your Maven/Gradle project (coming soon):
+Add to your Maven or Gradle project:
 
+**Maven:**
 ```xml
 <dependency>
-  <groupId>com.festivo</groupId>
+  <groupId>io.festivo</groupId>
   <artifactId>festivo-sdk</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.1</version>
 </dependency>
+```
+
+**Gradle:**
+```groovy
+implementation 'io.festivo:festivo-sdk:0.2.1'
 ```
 
 ## Usage
 
 ```java
-import com.festivo.FestivoClient;
+import io.festivo.FestivoClient;
 FestivoClient client = new FestivoClient("YOUR_API_KEY");
 FestivoClient.HolidaysResponse holidays = client.getHolidays("US", 2026, null);
 System.out.println(holidays.holidays);
@@ -34,8 +40,13 @@ System.out.println(holidays.holidays);
 
 ```bash
 cd festivo-sdk/java
-javac -cp .:org.json.jar src/FestivoClient.java example.java
-java -cp .:org.json.jar Example
+mvn clean install
+```
+
+## Testing
+
+```bash
+mvn test
 ```
 
 ## Links

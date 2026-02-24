@@ -14,6 +14,8 @@ jobs:
       py_changed: ${{ steps.detect_changes.outputs.py_changed }}
       php_changed: ${{ steps.detect_changes.outputs.php_changed }}
       go_changed: ${{ steps.detect_changes.outputs.go_changed }}
+      ruby_changed: ${{ steps.detect_changes.outputs.ruby_changed }}
+      java_changed: ${{ steps.detect_changes.outputs.java_changed }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -61,17 +63,21 @@ jobs:
           echo "Changed files:"
           echo "$CHANGED"
           
-          js=false; py=false; php=false; go=false
+          js=false; py=false; php=false; go=false; ruby=false; java=false
           if echo "$CHANGED" | grep -E '^js/' >/dev/null 2>&1; then js=true; fi
           if echo "$CHANGED" | grep -E '^python/' >/dev/null 2>&1; then py=true; fi
           if echo "$CHANGED" | grep -E '^php/' >/dev/null 2>&1; then php=true; fi
           if echo "$CHANGED" | grep -E '^go/' >/dev/null 2>&1; then go=true; fi
+          if echo "$CHANGED" | grep -E '^ruby/' >/dev/null 2>&1; then ruby=true; fi
+          if echo "$CHANGED" | grep -E '^java/' >/dev/null 2>&1; then java=true; fi
           
           echo "js_changed=$js" >> $GITHUB_OUTPUT
           echo "py_changed=$py" >> $GITHUB_OUTPUT
           echo "php_changed=$php" >> $GITHUB_OUTPUT
           echo "go_changed=$go" >> $GITHUB_OUTPUT
-          echo "Detected changes: JS=$js, Python=$py, PHP=$php, Go=$go"
+          echo "ruby_changed=$ruby" >> $GITHUB_OUTPUT
+          echo "java_changed=$java" >> $GITHUB_OUTPUT
+          echo "Detected changes: JS=$js, Python=$py, PHP=$php, Go=$go, Ruby=$ruby, Java=$java"
 
   release-js:
     needs: prepare
@@ -244,3 +250,74 @@ jobs:
       - name: Go modules published
         if: startsWith(github.ref, 'refs/tags/v')
         run: echo "Go modules are available via git tags."
+
+  release-ruby:
+    needs: prepare
+    if: needs.prepare.outputs.ruby_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      - name: Build Ruby gem
+        run: |
+          cd ruby
+          gem build festivo.gemspec
+
+      - name: Test Ruby gem
+        run: |
+          cd ruby
+          # Add test command if available, e.g. rspec or minitest
+          echo "No tests defined for Ruby gem."
+
+      - name: Publish Ruby gem
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          cd ruby
+          gem push festivo-*.gem --key rubygems --host https://rubygems.org
+        env:
+          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+
+  release-java:
+    needs: prepare
+    if: needs.prepare.outputs.java_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          gpg-private-key: ${{ secrets.JAVA_GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.JAVA_GPG_PASSPHRASE }}
+
+      - name: Build Java SDK
+        run: |
+          cd java
+          ./gradlew build || mvn package
+
+      - name: Test Java SDK
+        run: |
+          cd java
+          ./gradlew test || mvn test
+
+      - name: Publish to Maven Central (Sonatype)
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          cd java
+          ./gradlew publish || mvn deploy
+        env:
+          MAVEN_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+          GPG_PRIVATE_KEY: ${{ secrets.JAVA_GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.JAVA_GPG_PASSPHRASE }}

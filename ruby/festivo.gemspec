@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "festivo"
-  spec.version       = "0.2.0"
+  spec.version       = "0.2.1"
   spec.authors       = ["Festivo Team"]
   spec.email         = ["support@getfestivo.com"]
   spec.summary       = "Festivo Public Holidays API Ruby SDK"

@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>io.festivo</groupId>
+    <artifactId>festivo-sdk</artifactId>
+    <version>0.2.1</version>
+    <name>Festivo Java SDK</name>
+    <description>Official Java SDK for Festivo Public Holidays API</description>
+    <url>https://getfestivo.com</url>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>festivo</id>
+            <name>Festivo Team</name>
+            <email>support@getfestivo.com</email>
+        </developer>
+    </developers>
+    <scm>
+        <url>https://github.com/festivo-io/festivo-sdk</url>
+        <connection>scm:git:git://github.com/festivo-io/festivo-sdk.git</connection>
+        <developerConnection>scm:git:ssh://github.com/festivo-io/festivo-sdk.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <dependencies>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20231013</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
