@@ -89,3 +89,19 @@ go build ./...
 ## License
 
 MIT License - see [LICENSE](../LICENSE) for details.
+
+## Private Dependencies
+
+If you use private Go modules (e.g., github.com/festivo-io/data-scrappers), you must:
+
+1. Set the `GOPRIVATE` environment variable:
+   ```bash
+   export GOPRIVATE=github.com/festivo-io/*
+   ```
+2. Configure Git to use a GitHub token:
+   ```bash
+   git config --global url."https://<GITHUB_TOKEN>:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+   ```
+   Replace `<GITHUB_TOKEN>` with a GitHub personal access token with `repo` scope (or use the `GITHUB_TOKEN` in CI).
+
+This is required for both local development and CI/CD if your project depends on private modules.

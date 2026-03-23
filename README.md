@@ -14,7 +14,7 @@ Official SDKs for the [Festivo Public Holidays API](https://getfestivo.com) - Ac
 | **PHP** | [festivo-io/festivo-php](https://packagist.org/packages/festivo-io/festivo-php) | [![Packagist](https://img.shields.io/packagist/v/festivo-io/festivo-php.svg)](https://packagist.org/packages/festivo-io/festivo-php) | [README](php/README.md) |
 | **Go** | [festivo-sdk-go](https://pkg.go.dev/github.com/festivo-io/festivo-sdk-go) | [![Go](https://img.shields.io/github/v/tag/festivo-io/festivo-sdk)](https://github.com/festivo-io/festivo-sdk/tags) | [README](go/README.md) |
 | **Ruby** | [festivo](https://rubygems.org/gems/festivo) | [![Gem](https://img.shields.io/gem/v/festivo.svg)](https://rubygems.org/gems/festivo) | [README](ruby/README.md) |
-| **Java** | io.festivo:festivo-sdk | [![Maven Central](https://img.shields.io/maven-central/v/io.festivo/festivo-sdk.svg)](https://search.maven.org/artifact/io.festivo/festivo-sdk) | [README](java/README.md) |
+| **Java** | io.github.festivo-io:festivo-sdk | [![Maven Central](https://img.shields.io/maven-central/v/io.github.festivo-io/festivo-sdk.svg)](https://central.sonatype.com/artifact/io.github.festivo-io/festivo-sdk) | [README](java/README.md) |
 
 ## Features
 
@@ -92,19 +92,19 @@ result = client.get_holidays(country: 'US', year: 2026)
 **Maven:**
 ```xml
 <dependency>
-  <groupId>io.festivo</groupId>
+  <groupId>io.github.festivo-io</groupId>
   <artifactId>festivo-sdk</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.1</version>
 </dependency>
 ```
 
 **Gradle:**
 ```groovy
-implementation 'io.festivo:festivo-sdk:0.2.0'
+implementation 'io.github.festivo-io:festivo-sdk:0.2.1'
 ```
 
 ```java
-import com.festivo.FestivoClient;
+import io.festivo.FestivoClient;
 FestivoClient client = new FestivoClient("YOUR_API_KEY");
 FestivoClient.HolidaysResponse holidays = client.getHolidays("US", 2026, null);
 ```
